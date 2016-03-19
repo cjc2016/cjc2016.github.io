@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        a{
+            text-decoration: none;
+            color:#000;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            width:70px;
+            text-align: center;
+            display: none;
+        }
+        li{
+            list-style: none;
+            border-bottom: 1px solid yellow ;
+        }
+        li:hover{
+            color:#FF6380;
+            background-color:#92FFAB;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        js的组成
+            1、ECMAscript
+            2、DOM
+            3、BOM
+        结构 样式 行为 三者分离
+
+        javascript:; 阻止a标签默认的功能
+    -->
+
+    <a href="javascript:;" id="btn">微博</a>
+    <ul id="list">
+        <li>微博</li>
+        <li>新闻</li>
+        <li>图片</li>
+        <li>博客</li>
+        <li>视频</li>
+    </ul>
+</body>
+</html>
+<script>
+    /*
+    *
+    *   获取元素的方法。
+    *
+    *   document.getElementById();
+    *
+    *   document  文档
+    *
+    *   .  的
+    *
+    *   get  获取
+    *   element 元素
+    *
+    *   by  由
+    *
+    *   id  id
+    *
+    *   事件：
+    *       onclick   鼠标左键点击
+    *
+    *       onmouseover  鼠标移入
+    *       onmouseout   鼠标移出
+    *
+    *   function:
+    *       函数中的代码默认是不会执行的。
+    *
+    *       函数可以通过事件的触发执行
+    *
+    *   判断：
+    *       if(判断条件){
+    *           条件成立的时候执行的代码
+    *       }
+    *
+    * */
+
+    document.getElementById('btn').onclick=function(){
+        document.getElementById('list').style.display='block';
+
+    };
+
+
+</script>
