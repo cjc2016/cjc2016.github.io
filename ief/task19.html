@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box{
+				width: 500px;
+				margin: 0px auto;
+			}
+			.contain{
+				width: 800px;
+				margin: 600px auto 0px auto;
+				border: 1px solid blueviolet;
+			}
+			.ul{
+				list-style: none;
+				margin: 0px;
+				padding: 0px;
+				position: relative;
+			}
+			li{
+				width: 20px;
+				margin: 0px 5px;
+				position: absolute;
+				background: red;
+			}
+			.clear{
+				zoom: 1;
+			}
+			.clear:after{
+				display: block;
+				content: "";
+				clear: both;
+			}
+		</style>
+		
+		
+	</head>
+	<body>
+		<div class="box">
+			<input type="text"  /> 
+			<button>左侧入</button>
+			<button>右侧入</button>
+			<button>左侧出</button>
+			<button>右侧出</button>
+			<button>排序</button>
+		</div>
+		<div class="contain">
+			<ul class="ul clear">
+			
+			</ul>
+		</div>
+	</body>
+</html>
+<script>
+	var text=document.getElementsByTagName('input')[0];
+	var btns=document.getElementsByTagName('button');
+	var ul=document.getElementsByTagName('ul')[0];
+	var lis=document.getElementsByTagName('li');
+	var arrlist=[20,30,55,44,52,68,95,48,51,13,15,15,22,61,75,31,16,85,55,14,84,16,84,75,91,26];
+	show();
+	
+	btns[1].onclick=function(){
+		fn(1);
+		show();
+	}
+	btns[0].onclick=function(){
+		fn(0);
+		show();
+	}
+	btns[2].onclick=function(){
+		if(arrlist.length<1){
+			return
+		}
+		arrlist.shift();
+		show();
+	}
+	btns[3].onclick=function(){
+		if(arrlist.length<1){
+			return
+		}
+		arrlist.pop();
+		show();
+	}
+		var star=0;
+		var len=arrlist.length;
+	btns[4].onclick=function(){
+		setInterval(function(){
+			paixu(star,len)
+		},300)
+	
+	}
+	function paixu(star,len){
+		var num=null;
+		for (var i=star;i<len;i++) {
+			
+			for(var j=0;j<arrlist.length-i;j++){
+				
+				if(arrlist[j]>arrlist[j+1]){
+					num=arrlist[j];
+					arrlist[j]=arrlist[j+1]
+					arrlist[j+1]=num;
+				}
+			
+			}
+			show();
+			break;
+		
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+	function fn(num){
+		if(text.value==''){
+			alert("请输入内容");
+			return
+		}
+		if(isNaN(text.value)){
+			alert("请输入数字");
+			return
+		}
+		if( ( text.value>=100 ) || (text.value<=10) ){
+			alert("请输入10~~100间的数字")
+			return;
+		}
+		var pos=Number(text.value);
+		
+		if(num==0) arrlist.unshift(pos);
+		
+		if(num==1) arrlist.push(pos);
+	}
+	
+	
+	function show(){
+		str='';
+		for (var i=0;i<arrlist.length;i++) {
+			str+='<li style=top:'+ -arrlist[i]*5+'px;left:'+i*22+'px;height:'+arrlist[i]*5+'px;>'+arrlist[i]+'</li>'
+		}
+		ul.innerHTML=str;
+	}
+</script>
