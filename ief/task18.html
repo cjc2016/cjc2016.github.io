@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box{
+				width: 500px;
+				margin: 0px auto;
+			}
+			.ul{
+				list-style: none;
+				margin: 0px;
+				padding: 0px;
+			}
+			.box li{
+				float: left;
+				width: 50px;
+				height: 26px;
+				margin: 10px 10px;
+				background: greenyellow;
+				font-size: 16px;
+				line-height: 26px;
+			}
+			.box li a{
+				float: right;
+				font-size: 12px;
+			}
+			.clear{
+				zoom: 1;
+			}
+			.clear:after{
+				display: block;
+				content: "";
+				clear: both;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<input type="text"  /> 
+			<button>左侧入</button>
+			<button>右侧入</button>
+			<button>左侧出</button>
+			<button>右侧出</button>
+			<ul class="ul clear">
+			</ul>
+		</div>
+	</body>
+</html>
+<script>
+	var text=document.getElementsByTagName('input')[0];
+	var btns=document.getElementsByTagName('button');
+	var ul=document.getElementsByTagName('ul')[0];
+	var lis=document.getElementsByTagName('li');
+	
+	btns[1].onclick=function(){
+		var li=fn();
+		ul.appendChild(li)
+	}
+	btns[0].onclick=function(){
+		var li=fn();
+		ul.insertBefore(li,ul.children[0])
+	}
+	btns[2].onclick=function(){
+		if(!ul.children[0]){
+			return
+		}
+		ul.removeChild(ul.children[0])
+	}
+	btns[3].onclick=function(){
+		if(!ul.children[0]){
+			return
+		}
+		ul.removeChild(ul.children[lis.length-1])
+	}
+	
+	
+	
+	function fn(){
+		if(text.value==''){
+			alert("请输入内容");
+			return
+		}
+		if(isNaN(text.value)){
+			alert("请输入数字");
+			return
+		}
+		var li=document.createElement('li');
+		li.innerHTML=text.value+"<a>删除</a>";
+		li.onclick=function(){
+			ul.removeChild(this)
+		}
+		return li
+	}
+</script>
